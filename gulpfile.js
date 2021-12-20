@@ -51,7 +51,7 @@ function copyAssets(){
 
 
 function startWatch(){    
-    browserSync.init({   //
+    browserSync.init({   
         server: dist
     });
     watch(['src/js/**/*.js', '!src/**/*.min.js'], devBuildJs); 
@@ -63,4 +63,4 @@ exports.buildjs = devBuildJs;
 exports.watch = startWatch;
 exports.htmlcopy = htmlCopy;
 
-exports.build = parallel(devBuildJs, htmlCopy, copyAssets, startWatch);
+exports.build = parallel(devBuildJs, htmlCopy, startWatch);
