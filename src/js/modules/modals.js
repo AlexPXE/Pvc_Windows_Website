@@ -8,9 +8,7 @@ function modalPop(btnSelector, popupSelector, closeSelector, showModalByTime = 0
     function openHandler() {
         let flag = typeof(showModalByTime) === 'number' ? !!showModalByTime : false;
         const id = flag ? setTimeout(wOpen, showModalByTime) : 0;
-
-        console.log(flag, id);
-
+        
         function wOpen(){
             popup.addEventListener('click', closeHandler);
             popup.style.display = 'block';
@@ -49,11 +47,9 @@ function modalPop(btnSelector, popupSelector, closeSelector, showModalByTime = 0
             }, 800);        
             popup.removeEventListener('click', closeHandler);
         }    
-    }    
-    
+    }
 
-    btn.addEventListener('click', openHandler());
-    
+    btn.addEventListener('click', openHandler());    
 }
 
 export default modalPop;
