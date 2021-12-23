@@ -1,11 +1,19 @@
 import './slider';
-import modalPop from './modules/modals';
+import {ModalClass, modalPop} from './modules/modals';
 import tabs from './modules/tabs';
 
 document.addEventListener('DOMContentLoaded', (e) => {
-    modalPop('.header_btn', '.popup_engineer', '.popup_close');
-    modalPop('.contact_us_wrap .phone_link', '.popup', '.popup_close', 5000);
-    modalPop('.feedback_block .phone_link', '.popup', '.popup_close');
+    
+    modalPop({modals: [{
+            instance: new ModalClass('.popup_engineer', '.popup_engineer .popup_close > strong', 4000),
+            openButtonsSelector: '.header .header_btn',
+        }, {
+            instance: new ModalClass('.popup', '.popup .popup_close>strong'),
+            openButtonsSelector: '.header .phone_link, .feedback .phone_link',
+        }],        
+        blocksSelector: '.header, .feedback'
+    });
+
     tabs('.glazing_slider', '.glazing_block', '.glazing_content', 'active', 'bounceIn', 'bounceOut');
     tabs('.decoration_slider', '.decoration_item>div', '.decoration_content>div>div', 'after_click', 'bounceIn', 'zoomOut' );
     

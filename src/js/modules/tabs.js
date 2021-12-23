@@ -55,7 +55,7 @@ function tabs(blockTabsSelector, tabsSelector, contenSelector, activeClass, inAn
             }
         };
     }
-
+    
     tabsBlock.addEventListener('click', tabHandlerFabric(tabsNodeList, contentTabs, activeClass) );
 }
 
