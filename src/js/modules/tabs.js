@@ -1,4 +1,4 @@
-function tabs(blockTabsSelector, tabsSelector, contenSelector, activeClass) {
+function tabs(blockTabsSelector, tabsSelector, contenSelector, activeClass, inAnimation = "flipInX", outAnimation = "flipOutX") {
     const tabsBlock = document.querySelector(blockTabsSelector);      
     const tabsNodeList = tabsBlock.querySelectorAll(tabsSelector);
     const contentTabs = document.querySelectorAll(contenSelector);   
@@ -8,7 +8,8 @@ function tabs(blockTabsSelector, tabsSelector, contenSelector, activeClass) {
 
         tabsNodeList.forEach((val, ind) => {
             val.classList.remove(activeClass);
-            itemsNodeList[ind].style.display = "none";            
+            itemsNodeList[ind].style.display = "none";
+            itemsNodeList[ind].classList.add('animated');
             tabsCash.set(val, itemsNodeList[ind]);
         });
 
@@ -26,17 +27,31 @@ function tabs(blockTabsSelector, tabsSelector, contenSelector, activeClass) {
             elem && elem.querySelector('a').focus();
         }
 
+        function animateCSS(elem, nameOfAnimation) {
+            return  new Promise(resolve => {
+                elem.classList.add(nameOfAnimation);
+                console.log(elem);
+
+                elem.addEventListener('animationend', (e) => {
+                    elem.classList.remove(nameOfAnimation);
+                    resolve();
+                }, {once: true});
+            });
+        }        
+
         let activeTab = tabsNodeList[0];  
         activateTab(activeTab);
 
-        return function(e) {
+        return async function(e) {
             let elem = e.target.closest(tabsSelector);
 
             if(elem && tabsCash.has(elem) && elem != activeTab) {                
+                await animateCSS(tabsCash.get(activeTab), outAnimation);
                 deactivateTab(activeTab);
-                activateTab(elem);
+                activateTab(elem);                
                 focusLinkInTab(elem);
                 activeTab = elem;
+                animateCSS(tabsCash.get(elem), inAnimation);
             }
         };
     }
