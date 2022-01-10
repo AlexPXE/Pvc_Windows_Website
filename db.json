@@ -1,0 +1,15 @@
+{
+  "posts": [
+    {
+      "windowType": "Тип2",
+      "width": "233",
+      "height": "444",
+      "view_type": "french",
+      "coldw": false,
+      "warmw": true,
+      "user_name": "Alex",
+      "user_phone": "80000000000",
+      "id": 1
+    }
+  ]
+}

@@ -1,6 +1,19 @@
 const {src, dest, parallel, series, watch} = require('gulp');
 const webpack = require("webpack-stream");
 const browserSync = require('browser-sync').create();
+const jsonServer = require('json-server');
+
+function jsonServ() {
+    const server = jsonServer.create();
+    const router = jsonServer.router('db.json');
+    const middlewares = jsonServer.defaults();
+
+    server.use(middlewares);
+    server.use(router);
+    server.listen(3003, () => {
+        console.log('JSON Server is running');
+    });
+}
 
 const dist = "./dist";
 
@@ -62,5 +75,6 @@ exports.copy = copyAssets;
 exports.buildjs = devBuildJs;
 exports.watch = startWatch;
 exports.htmlcopy = htmlCopy;
+exports.jsonserver = jsonServ;
 
 exports.build = parallel(devBuildJs, htmlCopy, startWatch);
