@@ -5,6 +5,7 @@ import tabs from './modules/tabs';
 import forms from './modules/forms';
 import popupCalc from './modules/caclc';
 import timer from './modules/timer';
+import imgs from './modules/imgs';
 
 
 document.addEventListener('DOMContentLoaded', (e) => {
@@ -90,7 +91,12 @@ document.addEventListener('DOMContentLoaded', (e) => {
         hoursSelector:'#hours',
         minutesSelector:'#minutes',
         secondsSelector:'#seconds',
-        deadlineString:'11 01 2022 2 00'
+        deadlineString:'12 01 2022 19 00'
+    });
+
+    imgs({
+        blockSelector: '.works',
+        imgsSelector: '.works .preview',
     });
 
     /*
